@@ -200,31 +200,46 @@
             display: none;
         }
 
-        /* Стили для таблиц */
+        /* Адаптивные стили для таблиц */
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            -webkit-overflow-scrolling: touch; /* Плавная прокрутка на iOS */
+        }
+
         .schedule-table {
             width: 100%;
+            min-width: 600px; /* Минимальная ширина для таблицы */
             border-collapse: collapse;
-            margin: 20px 0;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            overflow: hidden;
+            background: rgba(255, 255, 255, 0.03);
         }
 
         .schedule-table th,
         .schedule-table td {
-            padding: 12px;
+            padding: 10px 8px;
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            word-wrap: break-word;
+            max-width: 120px;
         }
 
         .schedule-table th {
             background: rgba(76, 201, 240, 0.2);
             color: #4cc9f0;
             font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
 
         .schedule-table td {
             background: rgba(255, 255, 255, 0.03);
+            min-height: 50px;
+            vertical-align: middle;
         }
 
         .schedule-table input {
@@ -233,7 +248,9 @@
             border: none;
             color: white;
             text-align: center;
-            padding: 5px;
+            padding: 8px 5px;
+            font-size: 13px;
+            min-height: 40px;
         }
 
         .schedule-table input:focus {
@@ -250,17 +267,91 @@
         .day-header {
             background: rgba(114, 9, 183, 0.3) !important;
             color: #b5179e;
+            min-width: 80px;
         }
 
         .task-header {
             background: rgba(247, 37, 133, 0.3) !important;
             color: #f72585;
+            position: sticky;
+            left: 0;
+            z-index: 5;
+            min-width: 100px;
+        }
+
+        /* Стили для мобильных устройств */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .section {
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+            
+            .family-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .schedule-table th,
+            .schedule-table td {
+                padding: 8px 5px;
+                font-size: 12px;
+            }
+            
+            .schedule-table input {
+                font-size: 12px;
+                padding: 6px 3px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            h2 {
+                font-size: 20px;
+            }
+            
+            h3 {
+                font-size: 18px;
+            }
+            
+            button {
+                padding: 10px 20px;
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                margin: 20px auto;
+                padding: 25px 20px;
+            }
+            
+            .schedule-table th,
+            .schedule-table td {
+                padding: 6px 3px;
+                font-size: 11px;
+            }
+            
+            .schedule-table input {
+                font-size: 11px;
+                padding: 4px 2px;
+            }
+            
+            .table-container {
+                margin: 15px -10px;
+                width: calc(100% + 20px);
+            }
         }
     </style>
 </head>
 <body>
     <!-- Экран ввода пароля -->
     <div class="login-container" id="loginScreen">
+        <div class="logo">👨‍👩‍👦‍👦</div>
         <h2>Семейный сайт Темниковых</h2>
         <p>Введите пароль для доступа:</p>
         <input type="password" id="passwordInput" placeholder="Введите семейный пароль">
@@ -319,16 +410,20 @@
         <!-- 5. Меню на неделю -->
         <div class="section readonly" id="menuSection">
             <h3>🍽️ Меню на неделю</h3>
-            <div id="menuTableContainer">
-                <!-- Таблица меню будет генерироваться JavaScript -->
+            <div class="table-container">
+                <div id="menuTableContainer">
+                    <!-- Таблица меню будет генерироваться JavaScript -->
+                </div>
             </div>
         </div>
 
         <!-- 6. Домашние дела -->
         <div class="section readonly" id="choresSection">
             <h3>🏠 Домашние дела</h3>
-            <div id="choresTableContainer">
-                <!-- Таблица дел будет генерироваться JavaScript -->
+            <div class="table-container">
+                <div id="choresTableContainer">
+                    <!-- Таблица дел будет генерироваться JavaScript -->
+                </div>
             </div>
         </div>
 
@@ -353,7 +448,7 @@
         <div class="section wifi-info">
             <h3>📶 WiFi доступ</h3>
             <p><strong>Ежик(5G):</strong></p>
-            <p><strong>Пароль:</strong> TEM200174</p>
+            <p><strong>Пароль:</strong>TEM200174</p>
         </div>
 
         <div style="text-align: center; margin-top: 40px;">
@@ -504,9 +599,9 @@
                     const key = `${day}_${meal}`;
                     const value = menuData[key] || '';
                     if (isCreatorMode) {
-                        tableHTML += `<td><input type="text" value="${value}" onchange="saveMenuData('${key}', this.value)"></td>`;
+                        tableHTML += `<td><input type="text" value="${value}" onchange="saveMenuData('${key}', this.value)" placeholder="..."></td>`;
                     } else {
-                        tableHTML += `<td>${value}</td>`;
+                        tableHTML += `<td>${value || '-'}</td>`;
                     }
                 });
                 tableHTML += '</tr>';
@@ -543,9 +638,9 @@
                     const key = `${day}_${chore}`;
                     const value = choresData[key] || '';
                     if (isCreatorMode) {
-                        tableHTML += `<td><input type="text" value="${value}" onchange="saveChoresData('${key}', this.value)"></td>`;
+                        tableHTML += `<td><input type="text" value="${value}" onchange="saveChoresData('${key}', this.value)" placeholder="..."></td>`;
                     } else {
-                        tableHTML += `<td>${value}</td>`;
+                        tableHTML += `<td>${value || '-'}</td>`;
                     }
                 });
                 tableHTML += '</tr>';
