@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Семейный сайт Темниковых</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 40px 30px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .site-content {
+            display: none;
+            max-width: 1000px;
+            margin: 0 auto;
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1, h2, h3 {
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            padding: 15px;
+            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: white;
+            font-size: 16px;
+        }
+
+        input[type="password"]:focus {
+            outline: none;
+            border-color: #4cc9f0;
+            box-shadow: 0 0 0 2px rgba(76, 201, 240, 0.3);
+        }
+
+        input[type="password"]::placeholder {
+            color: #aaa;
+        }
+
+        button {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #4cc9f0 0%, #4361ee 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 201, 240, 0.4);
+        }
+
+        .family-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .family-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .family-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(76, 201, 240, 0.3);
+        }
+
+        .birthday {
+            color: #4cc9f0;
+            font-weight: 600;
+            margin: 10px 0;
+        }
+
+        .phone {
+            color: #f72585;
+            font-weight: 600;
+            margin: 10px 0;
+        }
+
+        .wifi-info {
+            background: linear-gradient(135deg, #7209b7 0%, #3a0ca3 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .cat-section {
+            background: linear-gradient(135deg, #f72585 0%, #b5179e 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .logout-btn {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            margin-top: 30px;
+        }
+
+        .error-message {
+            color: #ff6b6b;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .icon {
+            font-size: 1.2em;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Экран ввода пароля -->
+    <div class="login-container" id="loginScreen">
+        <div class="logo">👨‍👩‍👦‍👦</div>
+        <h2>Семейный сайт Темниковых</h2>
+        <p>Введите пароль для доступа:</p>
+        <input type="password" id="passwordInput" placeholder="Введите семейный пароль">
+        <button onclick="checkPassword()">Войти в семейный портал</button>
+        <p class="error-message" id="errorMsg">Неверный пароль! Попробуйте еще раз.</p>
+    </div>
+
+    <!-- Основной контент сайта -->
+    <div class="site-content" id="siteContent">
+        <header style="text-align: center; margin-bottom: 40px;">
+            <div class="logo">🏠</div>
+            <h1>Семейный портал Темниковых</h1>
+            <p>Добро пожаловать в наше семейное пространство!</p>
+        </header>
+
+        <div class="family-grid">
+            <!-- Ира -->
+            <div class="family-card">
+                <h3>Ира</h3>
+                <div class="phone">📱 +7 919 768-08-68</div>
+                <div class="birthday">🎂 20 января 1974</div>
+            </div>
+
+            <!-- Саша -->
+            <div class="family-card">
+                <h3>Саша</h3>
+                <div class="phone">📱 +7 916 615-85-81</div>
+                <div class="birthday">🎂 2 сентября 1975</div>
+            </div>
+
+            <!-- Андрей -->
+            <div class="family-card">
+                <h3>Андрей</h3>
+                <div class="phone">📱 +7 999 943-07-07</div>
+                <div class="birthday">🎂 1 сентября 2007</div>
+            </div>
+
+            <!-- Егор -->
+            <div class="family-card">
+                <h3>Егор</h3>
+                <div class="phone">📱 +7 915 168-50-04</div>
+                <div class="birthday">🎂 7 февраля 2014</div>
+            </div>
+        </div>
+
+        <!-- Кошка -->
+        <div class="cat-section">
+            <h3>😺 Наша кошка</h3>
+            <p>Муся</p>
+        </div>
+
+        <!-- WiFi информация -->
+        <div class="wifi-info">
+            <h3>📶 WiFi доступ</h3>
+            <p><strong>Ежик(5G)</strong></p>
+            <p><strong>Пароль:</strong> TEM200174</p>
+        </div>
+
+        <div style="text-align: center;">
+            <button class="logout-btn" onclick="logout()">Выйти из семейного портала</button>
+        </div>
+    </div>
+
+    <script>
+        // Пароль для доступа
+        const CORRECT_PASSWORD = "TEM200174";
+        
+        // Проверяем сохраненный доступ
+        if (localStorage.getItem('familySiteAccess') === 'true') {
+            showSiteContent();
+        }
+
+        function checkPassword() {
+            const input = document.getElementById('passwordInput').value;
+            const errorMsg = document.getElementById('errorMsg');
+            
+            if (input === CORRECT_PASSWORD) {
+                localStorage.setItem('familySiteAccess', 'true');
+                showSiteContent();
+            } else {
+                errorMsg.style.display = 'block';
+                // Анимация ошибки
+                errorMsg.style.animation = 'shake 0.5s ease';
+                setTimeout(() => errorMsg.style.animation = '', 500);
+            }
+        }
+
+        function showSiteContent() {
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('siteContent').style.display = 'block';
+        }
+
+        function logout() {
+            localStorage.removeItem('familySiteAccess');
+            location.reload();
+        }
+
+        // Анимация тряски для ошибки
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-5px); }
+                75% { transform: translateX(5px); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Enter для ввода пароля
+        document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+    </script>
+</body>
+</html>
