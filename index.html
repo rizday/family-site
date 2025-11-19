@@ -102,35 +102,30 @@
 
         .family-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
             margin: 30px 0;
         }
 
         .section {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
-            padding: 25px;
+            padding: 20px;
             border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             margin-bottom: 25px;
         }
 
-        .section:hover {
-            transform: translateY(-2px);
-            border-color: rgba(76, 201, 240, 0.3);
-        }
-
         .birthday {
             color: #4cc9f0;
             font-weight: 600;
-            margin: 10px 0;
+            margin: 8px 0;
         }
 
         .phone {
             color: #f72585;
             font-weight: 600;
-            margin: 10px 0;
+            margin: 8px 0;
         }
 
         .wifi-info {
@@ -155,6 +150,145 @@
             border-radius: 20px;
             font-size: 12px;
             margin-left: 10px;
+        }
+
+        /* Адаптивные стили для всех устройств */
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin: 15px 0;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Стили для десктопных таблиц */
+        .desktop-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .desktop-table th,
+        .desktop-table td {
+            padding: 12px 8px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            min-width: 100px;
+        }
+
+        .desktop-table th {
+            background: rgba(76, 201, 240, 0.2);
+            color: #4cc9f0;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+        }
+
+        .desktop-table input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: white;
+            text-align: center;
+            padding: 8px;
+        }
+
+        /* Стили для мобильных карточек */
+        .mobile-cards {
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .day-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .day-header {
+            color: #4cc9f0;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .task-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .task-item:last-child {
+            border-bottom: none;
+        }
+
+        .task-name {
+            color: #f72585;
+            font-weight: 600;
+            min-width: 120px;
+        }
+
+        .task-value input {
+            background: transparent;
+            border: none;
+            color: white;
+            text-align: right;
+            width: 100%;
+        }
+
+        /* Медиа-запросы для адаптивности */
+        @media (max-width: 1024px) {
+            .desktop-table th,
+            .desktop-table td {
+                padding: 10px 6px;
+                font-size: 14px;
+                min-width: 80px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .desktop-table {
+                display: none;
+            }
+            
+            .mobile-cards {
+                display: flex;
+            }
+            
+            .family-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section {
+                padding: 15px;
+            }
+            
+            body {
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                margin: 20px auto;
+                padding: 25px 20px;
+            }
+            
+            .task-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+            
+            .task-value input {
+                text-align: left;
+                width: 100%;
+            }
         }
 
         /* Стили для списков */
@@ -198,153 +332,6 @@
         .readonly .add-item,
         .readonly .delete-btn {
             display: none;
-        }
-
-        /* Адаптивные стили для таблиц */
-        .table-container {
-            width: 100%;
-            overflow-x: auto;
-            margin: 20px 0;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.05);
-            -webkit-overflow-scrolling: touch; /* Плавная прокрутка на iOS */
-        }
-
-        .schedule-table {
-            width: 100%;
-            min-width: 600px; /* Минимальная ширина для таблицы */
-            border-collapse: collapse;
-            background: rgba(255, 255, 255, 0.03);
-        }
-
-        .schedule-table th,
-        .schedule-table td {
-            padding: 10px 8px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 14px;
-            word-wrap: break-word;
-            max-width: 120px;
-        }
-
-        .schedule-table th {
-            background: rgba(76, 201, 240, 0.2);
-            color: #4cc9f0;
-            font-weight: 600;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-
-        .schedule-table td {
-            background: rgba(255, 255, 255, 0.03);
-            min-height: 50px;
-            vertical-align: middle;
-        }
-
-        .schedule-table input {
-            width: 100%;
-            background: transparent;
-            border: none;
-            color: white;
-            text-align: center;
-            padding: 8px 5px;
-            font-size: 13px;
-            min-height: 40px;
-        }
-
-        .schedule-table input:focus {
-            outline: none;
-            background: rgba(76, 201, 240, 0.1);
-            border-radius: 5px;
-        }
-
-        .readonly .schedule-table input {
-            pointer-events: none;
-            background: transparent;
-        }
-
-        .day-header {
-            background: rgba(114, 9, 183, 0.3) !important;
-            color: #b5179e;
-            min-width: 80px;
-        }
-
-        .task-header {
-            background: rgba(247, 37, 133, 0.3) !important;
-            color: #f72585;
-            position: sticky;
-            left: 0;
-            z-index: 5;
-            min-width: 100px;
-        }
-
-        /* Стили для мобильных устройств */
-        @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-            
-            .section {
-                padding: 15px;
-                margin-bottom: 15px;
-            }
-            
-            .family-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-            
-            .schedule-table th,
-            .schedule-table td {
-                padding: 8px 5px;
-                font-size: 12px;
-            }
-            
-            .schedule-table input {
-                font-size: 12px;
-                padding: 6px 3px;
-            }
-            
-            h1 {
-                font-size: 24px;
-            }
-            
-            h2 {
-                font-size: 20px;
-            }
-            
-            h3 {
-                font-size: 18px;
-            }
-            
-            button {
-                padding: 10px 20px;
-                font-size: 13px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .login-container {
-                margin: 20px auto;
-                padding: 25px 20px;
-            }
-            
-            .schedule-table th,
-            .schedule-table td {
-                padding: 6px 3px;
-                font-size: 11px;
-            }
-            
-            .schedule-table input {
-                font-size: 11px;
-                padding: 4px 2px;
-            }
-            
-            .table-container {
-                margin: 15px -10px;
-                width: calc(100% + 20px);
-            }
         }
     </style>
 </head>
@@ -397,9 +384,7 @@
         <!-- 2. Список покупок -->
         <div class="section">
             <h3>🛒 Список покупок</h3>
-            <div class="item-list" id="shoppingList">
-                <!-- Список будет генерироваться JavaScript -->
-            </div>
+            <div class="item-list" id="shoppingList"></div>
             <div class="add-item">
                 <input type="text" id="newShoppingItem" placeholder="Добавить товар...">
                 <button onclick="addShoppingItem()">Добавить</button>
@@ -410,9 +395,10 @@
         <div class="section readonly" id="menuSection">
             <h3>🍽️ Меню на неделю</h3>
             <div class="table-container">
-                <div id="menuTableContainer">
-                    <!-- Таблица меню будет генерироваться JavaScript -->
-                </div>
+                <!-- Десктопная таблица -->
+                <table class="desktop-table" id="menuDesktopTable"></table>
+                <!-- Мобильные карточки -->
+                <div class="mobile-cards" id="menuMobileCards"></div>
             </div>
         </div>
 
@@ -420,18 +406,17 @@
         <div class="section readonly" id="choresSection">
             <h3>🏠 Домашние дела</h3>
             <div class="table-container">
-                <div id="choresTableContainer">
-                    <!-- Таблица дел будет генерироваться JavaScript -->
-                </div>
+                <!-- Десктопная таблица -->
+                <table class="desktop-table" id="choresDesktopTable"></table>
+                <!-- Мобильные карточки -->
+                <div class="mobile-cards" id="choresMobileCards"></div>
             </div>
         </div>
 
         <!-- 7. Семейные заметки -->
         <div class="section">
             <h3>📋 Семейные заметки</h3>
-            <div class="item-list" id="notesList">
-                <!-- Заметки будут генерироваться JavaScript -->
-            </div>
+            <div class="item-list" id="notesList"></div>
             <div class="add-item">
                 <input type="text" id="newNoteItem" placeholder="Добавить заметку...">
                 <button onclick="addNoteItem()">Добавить</button>
@@ -446,7 +431,7 @@
 
         <div class="section wifi-info">
             <h3>📶 WiFi доступ</h3>
-            <p><strong>Ежик(5G):</strong></p>
+            <p><strong>Ежик(5G)</strong></p>
             <p><strong>Пароль:</strong> TEM200174</p>
         </div>
 
@@ -456,16 +441,56 @@
     </div>
 
     <script>
-        // Пароли
-        const FAMILY_PASSWORD = "TEM-200174!";
-        const CREATOR_PASSWORD = "!2214!";
-        
-        let isCreatorMode = false;
+        // Единая база данных для всех устройств
+        const FamilyDatabase = {
+            // Основные настройки
+            settings: {
+                familyPassword: "TEM-200174!",
+                creatorPassword: "!2214!"
+            },
+            
+            // Данные таблиц
+            tables: {
+                menu: {
+                    days: ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'],
+                    meals: ['завтрак', 'обед', 'ужин'],
+                    data: {}
+                },
+                chores: {
+                    days: ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'],
+                    tasks: ['пылесос', 'мытье полов', 'посуда утр.', 'посуда дн.', 'посуда веч.', 'пыль'],
+                    data: {}
+                }
+            },
+            
+            // Списки
+            lists: {
+                shopping: [],
+                notes: []
+            },
+            
+            // Загрузка всех данных
+            loadAllData() {
+                this.tables.menu.data = JSON.parse(localStorage.getItem('menuData') || '{}');
+                this.tables.chores.data = JSON.parse(localStorage.getItem('choresData') || '{}');
+                this.lists.shopping = JSON.parse(localStorage.getItem('shoppingItems') || '[]');
+                this.lists.notes = JSON.parse(localStorage.getItem('notesItems') || '[]');
+            },
+            
+            // Сохранение данных таблиц
+            saveTableData(tableType, key, value) {
+                this.tables[tableType].data[key] = value;
+                localStorage.setItem(tableType + 'Data', JSON.stringify(this.tables[tableType].data));
+            },
+            
+            // Сохранение списков
+            saveListData(listType, data) {
+                this.lists[listType] = data;
+                localStorage.setItem(listType + 'Items', JSON.stringify(data));
+            }
+        };
 
-        // Данные для таблиц
-        const daysOfWeek = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
-        const meals = ['завтрак', 'обед', 'ужин'];
-        const chores = ['пылесос', 'мытье полов', 'посуда утр.', 'посуда дн.', 'посуда веч.', 'пыль'];
+        let isCreatorMode = false;
 
         // Проверяем сохраненный доступ
         if (localStorage.getItem('familySiteAccess') === 'true') {
@@ -477,7 +502,7 @@
             const input = document.getElementById('passwordInput').value;
             const errorMsg = document.getElementById('errorMsg');
             
-            if (input === FAMILY_PASSWORD) {
+            if (input === FamilyDatabase.settings.familyPassword) {
                 localStorage.setItem('familySiteAccess', 'true');
                 isCreatorMode = false;
                 showSiteContent();
@@ -488,7 +513,7 @@
 
         function showCreatorLogin() {
             const password = prompt("Введите пароль создателя:");
-            if (password === CREATOR_PASSWORD) {
+            if (password === FamilyDatabase.settings.creatorPassword) {
                 localStorage.setItem('familySiteAccess', 'true');
                 localStorage.setItem('creatorMode', 'true');
                 isCreatorMode = true;
@@ -510,6 +535,7 @@
         function showSiteContent() {
             document.getElementById('loginScreen').style.display = 'none';
             document.getElementById('siteContent').style.display = 'block';
+            FamilyDatabase.loadAllData();
             loadAllData();
             checkCreatorMode();
         }
@@ -527,20 +553,152 @@
             setTimeout(() => errorMsg.style.animation = '', 500);
         }
 
-        // Функции для работы со списками
+        // Загрузка всех данных
         function loadAllData() {
             loadShoppingList();
-            loadMenuTable();
-            loadChoresTable();
+            loadMenuTables();
+            loadChoresTables();
             loadNotesList();
         }
 
-        // Список покупок
+        // Меню на неделю - десктоп и мобильная версия
+        function loadMenuTables() {
+            loadDesktopMenuTable();
+            loadMobileMenuCards();
+        }
+
+        function loadDesktopMenuTable() {
+            const table = document.getElementById('menuDesktopTable');
+            let html = '<tr><th>Приём пищи</th>';
+            
+            FamilyDatabase.tables.menu.days.forEach(day => {
+                html += `<th>${day}</th>`;
+            });
+            html += '</tr>';
+            
+            FamilyDatabase.tables.menu.meals.forEach(meal => {
+                html += `<tr><td>${meal}</td>`;
+                FamilyDatabase.tables.menu.days.forEach(day => {
+                    const key = `${day}_${meal}`;
+                    const value = FamilyDatabase.tables.menu.data[key] || '';
+                    if (isCreatorMode) {
+                        html += `<td><input type="text" value="${value}" onchange="saveMenuData('${key}', this.value)" placeholder="..."></td>`;
+                    } else {
+                        html += `<td>${value || '-'}</td>`;
+                    }
+                });
+                html += '</tr>';
+            });
+            
+            table.innerHTML = html;
+        }
+
+        function loadMobileMenuCards() {
+            const container = document.getElementById('menuMobileCards');
+            let html = '';
+            
+            FamilyDatabase.tables.menu.days.forEach(day => {
+                html += `<div class="day-card">
+                    <div class="day-header">${day}</div>`;
+                
+                FamilyDatabase.tables.menu.meals.forEach(meal => {
+                    const key = `${day}_${meal}`;
+                    const value = FamilyDatabase.tables.menu.data[key] || '';
+                    html += `<div class="task-item">
+                        <span class="task-name">${meal}</span>
+                        <div class="task-value">`;
+                    
+                    if (isCreatorMode) {
+                        html += `<input type="text" value="${value}" onchange="saveMenuData('${key}', this.value)" placeholder="...">`;
+                    } else {
+                        html += `<span>${value || '-'}</span>`;
+                    }
+                    
+                    html += `</div></div>`;
+                });
+                
+                html += '</div>';
+            });
+            
+            container.innerHTML = html;
+        }
+
+        // Домашние дела - десктоп и мобильная версия
+        function loadChoresTables() {
+            loadDesktopChoresTable();
+            loadMobileChoresCards();
+        }
+
+        function loadDesktopChoresTable() {
+            const table = document.getElementById('choresDesktopTable');
+            let html = '<tr><th>Задача</th>';
+            
+            FamilyDatabase.tables.chores.days.forEach(day => {
+                html += `<th>${day}</th>`;
+            });
+            html += '</tr>';
+            
+            FamilyDatabase.tables.chores.tasks.forEach(task => {
+                html += `<tr><td>${task}</td>`;
+                FamilyDatabase.tables.chores.days.forEach(day => {
+                    const key = `${day}_${task}`;
+                    const value = FamilyDatabase.tables.chores.data[key] || '';
+                    if (isCreatorMode) {
+                        html += `<td><input type="text" value="${value}" onchange="saveChoresData('${key}', this.value)" placeholder="..."></td>`;
+                    } else {
+                        html += `<td>${value || '-'}</td>`;
+                    }
+                });
+                html += '</tr>';
+            });
+            
+            table.innerHTML = html;
+        }
+
+        function loadMobileChoresCards() {
+            const container = document.getElementById('choresMobileCards');
+            let html = '';
+            
+            FamilyDatabase.tables.chores.days.forEach(day => {
+                html += `<div class="day-card">
+                    <div class="day-header">${day}</div>`;
+                
+                FamilyDatabase.tables.chores.tasks.forEach(task => {
+                    const key = `${day}_${task}`;
+                    const value = FamilyDatabase.tables.chores.data[key] || '';
+                    html += `<div class="task-item">
+                        <span class="task-name">${task}</span>
+                        <div class="task-value">`;
+                    
+                    if (isCreatorMode) {
+                        html += `<input type="text" value="${value}" onchange="saveChoresData('${key}', this.value)" placeholder="...">`;
+                    } else {
+                        html += `<span>${value || '-'}</span>`;
+                    }
+                    
+                    html += `</div></div>`;
+                });
+                
+                html += '</div>';
+            });
+            
+            container.innerHTML = html;
+        }
+
+        // Функции сохранения данных
+        function saveMenuData(key, value) {
+            FamilyDatabase.saveTableData('menu', key, value);
+        }
+
+        function saveChoresData(key, value) {
+            FamilyDatabase.saveTableData('chores', key, value);
+        }
+
+        // Остальные функции для списков (покупки, заметки) остаются без изменений
         function loadShoppingList() {
             const list = document.getElementById('shoppingList');
-            const items = JSON.parse(localStorage.getItem('shoppingItems') || '[]');
             list.innerHTML = '';
-            items.forEach((item, index) => {
+            FamilyDatabase.lists.shopping.forEach((item, index) => {
                 list.innerHTML += `
                     <div class="item">
                         <input type="checkbox" onchange="toggleShoppingItem(${index})" ${item.checked ? 'checked' : ''}>
@@ -555,112 +713,31 @@
             const input = document.getElementById('newShoppingItem');
             const text = input.value.trim();
             if (text) {
-                const items = JSON.parse(localStorage.getItem('shoppingItems') || '[]');
-                items.push({ text, checked: false });
-                localStorage.setItem('shoppingItems', JSON.stringify(items));
+                const items = [...FamilyDatabase.lists.shopping, { text, checked: false }];
+                FamilyDatabase.saveListData('shopping', items);
                 input.value = '';
                 loadShoppingList();
             }
         }
 
         function toggleShoppingItem(index) {
-            const items = JSON.parse(localStorage.getItem('shoppingItems') || '[]');
+            const items = [...FamilyDatabase.lists.shopping];
             items[index].checked = !items[index].checked;
-            localStorage.setItem('shoppingItems', JSON.stringify(items));
+            FamilyDatabase.saveListData('shopping', items);
             loadShoppingList();
         }
 
         function deleteShoppingItem(index) {
-            const items = JSON.parse(localStorage.getItem('shoppingItems') || '[]');
+            const items = [...FamilyDatabase.lists.shopping];
             items.splice(index, 1);
-            localStorage.setItem('shoppingItems', JSON.stringify(items));
+            FamilyDatabase.saveListData('shopping', items);
             loadShoppingList();
         }
 
-        // Меню на неделю (таблица)
-        function loadMenuTable() {
-            const container = document.getElementById('menuTableContainer');
-            let menuData = JSON.parse(localStorage.getItem('menuData') || '{}');
-            
-            let tableHTML = '<table class="schedule-table">';
-            
-            // Заголовок с днями недели
-            tableHTML += '<tr><th class="task-header">Приём пищи</th>';
-            daysOfWeek.forEach(day => {
-                tableHTML += `<th class="day-header">${day}</th>`;
-            });
-            tableHTML += '</tr>';
-            
-            // Строки с приемами пищи
-            meals.forEach(meal => {
-                tableHTML += `<tr><td class="task-header">${meal}</td>`;
-                daysOfWeek.forEach(day => {
-                    const key = `${day}_${meal}`;
-                    const value = menuData[key] || '';
-                    if (isCreatorMode) {
-                        tableHTML += `<td><input type="text" value="${value}" onchange="saveMenuData('${key}', this.value)" placeholder="..."></td>`;
-                    } else {
-                        tableHTML += `<td>${value || '-'}</td>`;
-                    }
-                });
-                tableHTML += '</tr>';
-            });
-            
-            tableHTML += '</table>';
-            container.innerHTML = tableHTML;
-        }
-
-        function saveMenuData(key, value) {
-            let menuData = JSON.parse(localStorage.getItem('menuData') || '{}');
-            menuData[key] = value;
-            localStorage.setItem('menuData', JSON.stringify(menuData));
-        }
-
-        // Домашние дела (таблица)
-        function loadChoresTable() {
-            const container = document.getElementById('choresTableContainer');
-            let choresData = JSON.parse(localStorage.getItem('choresData') || '{}');
-            
-            let tableHTML = '<table class="schedule-table">';
-            
-            // Заголовок с днями недели
-            tableHTML += '<tr><th class="task-header">Задача</th>';
-            daysOfWeek.forEach(day => {
-                tableHTML += `<th class="day-header">${day}</th>`;
-            });
-            tableHTML += '</tr>';
-            
-            // Строки с задачами
-            chores.forEach(chore => {
-                tableHTML += `<tr><td class="task-header">${chore}</td>`;
-                daysOfWeek.forEach(day => {
-                    const key = `${day}_${chore}`;
-                    const value = choresData[key] || '';
-                    if (isCreatorMode) {
-                        tableHTML += `<td><input type="text" value="${value}" onchange="saveChoresData('${key}', this.value)" placeholder="..."></td>`;
-                    } else {
-                        tableHTML += `<td>${value || '-'}</td>`;
-                    }
-                });
-                tableHTML += '</tr>';
-            });
-            
-            tableHTML += '</table>';
-            container.innerHTML = tableHTML;
-        }
-
-        function saveChoresData(key, value) {
-            let choresData = JSON.parse(localStorage.getItem('choresData') || '{}');
-            choresData[key] = value;
-            localStorage.setItem('choresData', JSON.stringify(choresData));
-        }
-
-        // Семейные заметки
         function loadNotesList() {
             const list = document.getElementById('notesList');
-            const items = JSON.parse(localStorage.getItem('notesItems') || '[]');
             list.innerHTML = '';
-            items.forEach((item, index) => {
+            FamilyDatabase.lists.notes.forEach((item, index) => {
                 list.innerHTML += `
                     <div class="item">
                         <span class="item-text">${item.text}</span>
@@ -674,18 +751,17 @@
             const input = document.getElementById('newNoteItem');
             const text = input.value.trim();
             if (text) {
-                const items = JSON.parse(localStorage.getItem('notesItems') || '[]');
-                items.push({ text });
-                localStorage.setItem('notesItems', JSON.stringify(items));
+                const items = [...FamilyDatabase.lists.notes, { text }];
+                FamilyDatabase.saveListData('notes', items);
                 input.value = '';
                 loadNotesList();
             }
         }
 
         function deleteNoteItem(index) {
-            const items = JSON.parse(localStorage.getItem('notesItems') || '[]');
+            const items = [...FamilyDatabase.lists.notes];
             items.splice(index, 1);
-            localStorage.setItem('notesItems', JSON.stringify(items));
+            FamilyDatabase.saveListData('notes', items);
             loadNotesList();
         }
 
