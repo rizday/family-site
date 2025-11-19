@@ -22,7 +22,7 @@
 
         .login-container {
             max-width: 400px;
-            margin: 100px auto;
+            margin: 50px auto;
             padding: 40px 30px;
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
@@ -34,7 +34,7 @@
 
         .site-content {
             display: none;
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             animation: fadeIn 0.8s ease;
         }
@@ -54,10 +54,10 @@
             margin-bottom: 10px;
         }
 
-        input[type="password"] {
+        input[type="password"], input[type="text"] {
             width: 100%;
             padding: 15px;
-            margin: 20px 0;
+            margin: 10px 0;
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 10px;
@@ -65,30 +65,39 @@
             font-size: 16px;
         }
 
-        input[type="password"]:focus {
+        input:focus {
             outline: none;
             border-color: #4cc9f0;
             box-shadow: 0 0 0 2px rgba(76, 201, 240, 0.3);
         }
 
-        input[type="password"]::placeholder {
+        input::placeholder {
             color: #aaa;
         }
 
         button {
-            padding: 15px 30px;
+            padding: 12px 25px;
             background: linear-gradient(135deg, #4cc9f0 0%, #4361ee 100%);
             color: white;
             border: none;
             border-radius: 10px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 600;
+            margin: 5px;
         }
 
         button:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(76, 201, 240, 0.4);
+        }
+
+        .creator-btn {
+            background: linear-gradient(135deg, #f72585 0%, #b5179e 100%);
+        }
+
+        .logout-btn {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
         }
 
         .family-grid {
@@ -98,16 +107,17 @@
             margin: 30px 0;
         }
 
-        .family-card {
+        .section {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             padding: 25px;
             border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 25px;
         }
 
-        .family-card:hover {
-            transform: translateY(-5px);
+        .section:hover {
+            transform: translateY(-2px);
             border-color: rgba(76, 201, 240, 0.3);
         }
 
@@ -125,23 +135,11 @@
 
         .wifi-info {
             background: linear-gradient(135deg, #7209b7 0%, #3a0ca3 100%);
-            padding: 25px;
-            border-radius: 15px;
-            margin: 30px 0;
-            text-align: center;
         }
 
         .cat-section {
             background: linear-gradient(135deg, #f72585 0%, #b5179e 100%);
-            padding: 25px;
-            border-radius: 15px;
-            margin: 30px 0;
             text-align: center;
-        }
-
-        .logout-btn {
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
-            margin-top: 30px;
         }
 
         .error-message {
@@ -150,20 +148,124 @@
             display: none;
         }
 
-        .icon {
-            font-size: 1.2em;
-            margin-right: 8px;
+        .creator-badge {
+            background: #f72585;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+
+        /* Стили для списков */
+        .item-list {
+            margin: 15px 0;
+        }
+
+        .item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            margin: 5px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+
+        .item input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .item-text {
+            flex-grow: 1;
+        }
+
+        .delete-btn {
+            background: #ff6b6b;
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+
+        .add-item {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .add-item input {
+            flex-grow: 1;
+        }
+
+        .readonly .add-item,
+        .readonly .delete-btn {
+            display: none;
+        }
+
+        /* Стили для таблиц */
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .schedule-table th,
+        .schedule-table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .schedule-table th {
+            background: rgba(76, 201, 240, 0.2);
+            color: #4cc9f0;
+            font-weight: 600;
+        }
+
+        .schedule-table td {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .schedule-table input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: white;
+            text-align: center;
+            padding: 5px;
+        }
+
+        .schedule-table input:focus {
+            outline: none;
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+        }
+
+        .readonly .schedule-table input {
+            pointer-events: none;
+            background: transparent;
+        }
+
+        .day-header {
+            background: rgba(114, 9, 183, 0.3) !important;
+            color: #b5179e;
+        }
+
+        .task-header {
+            background: rgba(247, 37, 133, 0.3) !important;
+            color: #f72585;
         }
     </style>
 </head>
 <body>
     <!-- Экран ввода пароля -->
     <div class="login-container" id="loginScreen">
-        <div class="logo">👨‍👩‍👦‍👦</div>
         <h2>Семейный сайт Темниковых</h2>
         <p>Введите пароль для доступа:</p>
         <input type="password" id="passwordInput" placeholder="Введите семейный пароль">
         <button onclick="checkPassword()">Войти в семейный портал</button>
+        <button class="creator-btn" onclick="showCreatorLogin()">Вы создатель?</button>
         <p class="error-message" id="errorMsg">Неверный пароль! Попробуйте еще раз.</p>
     </div>
 
@@ -171,90 +273,326 @@
     <div class="site-content" id="siteContent">
         <header style="text-align: center; margin-bottom: 40px;">
             <div class="logo">🏠</div>
-            <h1>Семейный портал Темниковых</h1>
+            <h1>Семейный портал Темниковых <span id="creatorBadge" class="creator-badge" style="display: none;">Режим создателя</span></h1>
             <p>Добро пожаловать в наше семейное пространство!</p>
         </header>
 
+        <!-- Семейная информация -->
         <div class="family-grid">
-            <!-- Ира -->
-            <div class="family-card">
+            <div class="section">
                 <h3>Ира</h3>
                 <div class="phone">📱 +7 919 768-08-68</div>
                 <div class="birthday">🎂 20 января 1974</div>
             </div>
 
-            <!-- Саша -->
-            <div class="family-card">
+            <div class="section">
                 <h3>Саша</h3>
                 <div class="phone">📱 +7 916 615-85-81</div>
                 <div class="birthday">🎂 2 сентября 1975</div>
             </div>
 
-            <!-- Андрей -->
-            <div class="family-card">
+            <div class="section">
                 <h3>Андрей</h3>
                 <div class="phone">📱 +7 999 943-07-07</div>
                 <div class="birthday">🎂 1 сентября 2007</div>
             </div>
 
-            <!-- Егор -->
-            <div class="family-card">
+            <div class="section">
                 <h3>Егор</h3>
                 <div class="phone">📱 +7 915 168-50-04</div>
                 <div class="birthday">🎂 7 февраля 2014</div>
             </div>
         </div>
 
-        <!-- Кошка -->
-        <div class="cat-section">
+        <!-- 2. Список покупок -->
+        <div class="section">
+            <h3>🛒 Список покупок</h3>
+            <div class="item-list" id="shoppingList">
+                <!-- Список будет генерироваться JavaScript -->
+            </div>
+            <div class="add-item">
+                <input type="text" id="newShoppingItem" placeholder="Добавить товар...">
+                <button onclick="addShoppingItem()">Добавить</button>
+            </div>
+        </div>
+
+        <!-- 5. Меню на неделю -->
+        <div class="section readonly" id="menuSection">
+            <h3>🍽️ Меню на неделю</h3>
+            <div id="menuTableContainer">
+                <!-- Таблица меню будет генерироваться JavaScript -->
+            </div>
+        </div>
+
+        <!-- 6. Домашние дела -->
+        <div class="section readonly" id="choresSection">
+            <h3>🏠 Домашние дела</h3>
+            <div id="choresTableContainer">
+                <!-- Таблица дел будет генерироваться JavaScript -->
+            </div>
+        </div>
+
+        <!-- 7. Семейные заметки -->
+        <div class="section">
+            <h3>📋 Семейные заметки</h3>
+            <div class="item-list" id="notesList">
+                <!-- Заметки будут генерироваться JavaScript -->
+            </div>
+            <div class="add-item">
+                <input type="text" id="newNoteItem" placeholder="Добавить заметку...">
+                <button onclick="addNoteItem()">Добавить</button>
+            </div>
+        </div>
+
+        <!-- Дополнительная информация -->
+        <div class="section cat-section">
             <h3>😺 Наша кошка</h3>
             <p>Муся</p>
         </div>
 
-        <!-- WiFi информация -->
-        <div class="wifi-info">
+        <div class="section wifi-info">
             <h3>📶 WiFi доступ</h3>
-            <p><strong>Ежик(5G)</strong></p>
+            <p><strong>Ежик(5G):</strong></p>
             <p><strong>Пароль:</strong> TEM200174</p>
         </div>
 
-        <div style="text-align: center;">
+        <div style="text-align: center; margin-top: 40px;">
             <button class="logout-btn" onclick="logout()">Выйти из семейного портала</button>
         </div>
     </div>
 
     <script>
-        // Пароль для доступа
-        const CORRECT_PASSWORD = "TEM200174";
+        // Пароли
+        const FAMILY_PASSWORD = "TEM-200174!";
+        const CREATOR_PASSWORD = "!2214!";
         
+        let isCreatorMode = false;
+
+        // Данные для таблиц
+        const daysOfWeek = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
+        const meals = ['завтрак', 'обед', 'ужин'];
+        const chores = ['пылесос', 'мытье полов', 'посуда утр.', 'посуда дн.', 'посуда веч.', 'пыль'];
+
         // Проверяем сохраненный доступ
         if (localStorage.getItem('familySiteAccess') === 'true') {
             showSiteContent();
+            checkCreatorMode();
         }
 
         function checkPassword() {
             const input = document.getElementById('passwordInput').value;
             const errorMsg = document.getElementById('errorMsg');
             
-            if (input === CORRECT_PASSWORD) {
+            if (input === FAMILY_PASSWORD) {
                 localStorage.setItem('familySiteAccess', 'true');
+                isCreatorMode = false;
                 showSiteContent();
             } else {
-                errorMsg.style.display = 'block';
-                // Анимация ошибки
-                errorMsg.style.animation = 'shake 0.5s ease';
-                setTimeout(() => errorMsg.style.animation = '', 500);
+                showError();
+            }
+        }
+
+        function showCreatorLogin() {
+            const password = prompt("Введите пароль создателя:");
+            if (password === CREATOR_PASSWORD) {
+                localStorage.setItem('familySiteAccess', 'true');
+                localStorage.setItem('creatorMode', 'true');
+                isCreatorMode = true;
+                showSiteContent();
+            } else {
+                alert("Неверный пароль создателя!");
+            }
+        }
+
+        function checkCreatorMode() {
+            if (localStorage.getItem('creatorMode') === 'true') {
+                isCreatorMode = true;
+                document.getElementById('creatorBadge').style.display = 'inline';
+                document.getElementById('menuSection').classList.remove('readonly');
+                document.getElementById('choresSection').classList.remove('readonly');
             }
         }
 
         function showSiteContent() {
             document.getElementById('loginScreen').style.display = 'none';
             document.getElementById('siteContent').style.display = 'block';
+            loadAllData();
+            checkCreatorMode();
         }
 
         function logout() {
             localStorage.removeItem('familySiteAccess');
+            localStorage.removeItem('creatorMode');
             location.reload();
+        }
+
+        function showError() {
+            const errorMsg = document.getElementById('errorMsg');
+            errorMsg.style.display = 'block';
+            errorMsg.style.animation = 'shake 0.5s ease';
+            setTimeout(() => errorMsg.style.animation = '', 500);
+        }
+
+        // Функции для работы со списками
+        function loadAllData() {
+            loadShoppingList();
+            loadMenuTable();
+            loadChoresTable();
+            loadNotesList();
+        }
+
+        // Список покупок
+        function loadShoppingList() {
+            const list = document.getElementById('shoppingList');
+            const items = JSON.parse(localStorage.getItem('shoppingItems') || '[]');
+            list.innerHTML = '';
+            items.forEach((item, index) => {
+                list.innerHTML += `
+                    <div class="item">
+                        <input type="checkbox" onchange="toggleShoppingItem(${index})" ${item.checked ? 'checked' : ''}>
+                        <span class="item-text" style="${item.checked ? 'text-decoration: line-through; opacity: 0.6;' : ''}">${item.text}</span>
+                        <button class="delete-btn" onclick="deleteShoppingItem(${index})">✕</button>
+                    </div>
+                `;
+            });
+        }
+
+        function addShoppingItem() {
+            const input = document.getElementById('newShoppingItem');
+            const text = input.value.trim();
+            if (text) {
+                const items = JSON.parse(localStorage.getItem('shoppingItems') || '[]');
+                items.push({ text, checked: false });
+                localStorage.setItem('shoppingItems', JSON.stringify(items));
+                input.value = '';
+                loadShoppingList();
+            }
+        }
+
+        function toggleShoppingItem(index) {
+            const items = JSON.parse(localStorage.getItem('shoppingItems') || '[]');
+            items[index].checked = !items[index].checked;
+            localStorage.setItem('shoppingItems', JSON.stringify(items));
+            loadShoppingList();
+        }
+
+        function deleteShoppingItem(index) {
+            const items = JSON.parse(localStorage.getItem('shoppingItems') || '[]');
+            items.splice(index, 1);
+            localStorage.setItem('shoppingItems', JSON.stringify(items));
+            loadShoppingList();
+        }
+
+        // Меню на неделю (таблица)
+        function loadMenuTable() {
+            const container = document.getElementById('menuTableContainer');
+            let menuData = JSON.parse(localStorage.getItem('menuData') || '{}');
+            
+            let tableHTML = '<table class="schedule-table">';
+            
+            // Заголовок с днями недели
+            tableHTML += '<tr><th class="task-header">Приём пищи</th>';
+            daysOfWeek.forEach(day => {
+                tableHTML += `<th class="day-header">${day}</th>`;
+            });
+            tableHTML += '</tr>';
+            
+            // Строки с приемами пищи
+            meals.forEach(meal => {
+                tableHTML += `<tr><td class="task-header">${meal}</td>`;
+                daysOfWeek.forEach(day => {
+                    const key = `${day}_${meal}`;
+                    const value = menuData[key] || '';
+                    if (isCreatorMode) {
+                        tableHTML += `<td><input type="text" value="${value}" onchange="saveMenuData('${key}', this.value)"></td>`;
+                    } else {
+                        tableHTML += `<td>${value}</td>`;
+                    }
+                });
+                tableHTML += '</tr>';
+            });
+            
+            tableHTML += '</table>';
+            container.innerHTML = tableHTML;
+        }
+
+        function saveMenuData(key, value) {
+            let menuData = JSON.parse(localStorage.getItem('menuData') || '{}');
+            menuData[key] = value;
+            localStorage.setItem('menuData', JSON.stringify(menuData));
+        }
+
+        // Домашние дела (таблица)
+        function loadChoresTable() {
+            const container = document.getElementById('choresTableContainer');
+            let choresData = JSON.parse(localStorage.getItem('choresData') || '{}');
+            
+            let tableHTML = '<table class="schedule-table">';
+            
+            // Заголовок с днями недели
+            tableHTML += '<tr><th class="task-header">Задача</th>';
+            daysOfWeek.forEach(day => {
+                tableHTML += `<th class="day-header">${day}</th>`;
+            });
+            tableHTML += '</tr>';
+            
+            // Строки с задачами
+            chores.forEach(chore => {
+                tableHTML += `<tr><td class="task-header">${chore}</td>`;
+                daysOfWeek.forEach(day => {
+                    const key = `${day}_${chore}`;
+                    const value = choresData[key] || '';
+                    if (isCreatorMode) {
+                        tableHTML += `<td><input type="text" value="${value}" onchange="saveChoresData('${key}', this.value)"></td>`;
+                    } else {
+                        tableHTML += `<td>${value}</td>`;
+                    }
+                });
+                tableHTML += '</tr>';
+            });
+            
+            tableHTML += '</table>';
+            container.innerHTML = tableHTML;
+        }
+
+        function saveChoresData(key, value) {
+            let choresData = JSON.parse(localStorage.getItem('choresData') || '{}');
+            choresData[key] = value;
+            localStorage.setItem('choresData', JSON.stringify(choresData));
+        }
+
+        // Семейные заметки
+        function loadNotesList() {
+            const list = document.getElementById('notesList');
+            const items = JSON.parse(localStorage.getItem('notesItems') || '[]');
+            list.innerHTML = '';
+            items.forEach((item, index) => {
+                list.innerHTML += `
+                    <div class="item">
+                        <span class="item-text">${item.text}</span>
+                        <button class="delete-btn" onclick="deleteNoteItem(${index})">✕</button>
+                    </div>
+                `;
+            });
+        }
+
+        function addNoteItem() {
+            const input = document.getElementById('newNoteItem');
+            const text = input.value.trim();
+            if (text) {
+                const items = JSON.parse(localStorage.getItem('notesItems') || '[]');
+                items.push({ text });
+                localStorage.setItem('notesItems', JSON.stringify(items));
+                input.value = '';
+                loadNotesList();
+            }
+        }
+
+        function deleteNoteItem(index) {
+            const items = JSON.parse(localStorage.getItem('notesItems') || '[]');
+            items.splice(index, 1);
+            localStorage.setItem('notesItems', JSON.stringify(items));
+            loadNotesList();
         }
 
         // Анимация тряски для ошибки
